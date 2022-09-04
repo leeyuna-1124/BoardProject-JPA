@@ -1,0 +1,37 @@
+#데이터 소스(Data Source)
+spring:
+  datasource: 
+    hikari:
+     driver-class-name: com.mysql.cj.jdbc.Driver
+     jdbc-url: jdbc:mysql://localhost:3306/board?serverTimezone=UTC&characterEncoding=UTF-8
+     username: root
+     password: 1234
+  
+#Resource and Tymeleaf Refresh
+#static폴더에 위치하는 css, image 등의 리소스 파일들과 HTML파일이 수정된 상태에서 새로고침(Refresh)이 일어났을 때
+#리로드(수정된 소스 적용)를 처리하는 설정
+  devtools:
+     livereload:
+       enabled: true
+  thymeleaf:
+     cache: false
+    
+#JPA Properties
+#JPA관련 설정으로 데이터베이스의 타입과 로그 등을 처리하는 설정
+  jpa:
+    database: mysql
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+  #JPA의 자동생성 기능을 작동하지 않도록 함
+    generate-ddl: false
+    hibernate:
+  #JPA의 자동생성 기능을 작동하지 않도록 함
+     ddl-auto: none
+    open-in-view: false
+    show-sql: true
+    properties:
+     hibernate:
+      format_sql: true
+      use_sql_comment: true
+    
+    
+      
