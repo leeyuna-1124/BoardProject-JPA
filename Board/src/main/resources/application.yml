@@ -2,10 +2,12 @@
 spring:
   datasource: 
     hikari:
-     driver-class-name: com.mysql.cj.jdbc.Driver
-     jdbc-url: jdbc:mysql://localhost:3306/board?serverTimezone=UTC&characterEncoding=UTF-8
+#     driver-class-name: com.mysql.cj.jdbc.Driver
+     driver-class-name: net.sf.log4jdbc.sql.jdbcapi.DriverSpy
+     jdbc-url: jdbc:log4jdbc:mysql://localhost:3306/board?serverTimezone=UTC&characterEncoding=UTF-8
+     connection-test-query: SELECT NOW() FROM dual
      username: root
-     password: 1234
+     password: leeyuna1124
   
 #Resource and Tymeleaf Refresh
 #static폴더에 위치하는 css, image 등의 리소스 파일들과 HTML파일이 수정된 상태에서 새로고침(Refresh)이 일어났을 때

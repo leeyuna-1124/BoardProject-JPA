@@ -32,7 +32,7 @@ public class BoardTest {
 		boardRepository.save(params);
 		
 		//게시글 정보 조회
-		Board entity = boardRepository.findById(1L).get();
+		Board entity = boardRepository.findById(3L).get();
 		assertThat(entity.getTitle()).isEqualTo("첫번째 게시글 제목");
 		assertThat(entity.getContent()).isEqualTo("첫번째 게시글 내용");
 		assertThat(entity.getWriter()).isEqualTo("홍길동");
@@ -53,7 +53,7 @@ public class BoardTest {
 	void delete() {
 		
 		//게시글 조회
-		Board entity = boardRepository.findById(1L).get();
+		Board entity = boardRepository.findById(2L).get();
 		
 		//게시글 삭제
 		boardRepository.delete(entity);
