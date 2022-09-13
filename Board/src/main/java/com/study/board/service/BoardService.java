@@ -41,7 +41,7 @@ public class BoardService {
 		
 		Sort sort = Sort.by(Direction.DESC, "id", "createdDate");
 		List<Board> list = boardRepository.findAll(sort);
-		return list.stream().map(BoardResponseDto::new).collect(Collectors.toList()); //엔티를 dto타입으로 변경해서 리턴 
+		return list.stream().map(BoardResponseDto::new).collect(Collectors.toList()); //엔티티를 dto타입으로 변경해서 리턴 
 	}
 	
 	/*
