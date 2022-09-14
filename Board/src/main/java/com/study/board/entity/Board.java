@@ -48,10 +48,27 @@ public class Board {
 		this.deleteYn = deleteYn;
 	}
 	
+	/*
+	 * 게시글 수정 
+	 */
 	public void update(String title, String content, String writer) {
 		this.title = title;
 		this.content = content;
 		this.writer = writer;
 		this.modifiedDate = LocalDateTime.now();
+	}
+	
+	/*
+	 * 조회수 증가 
+	 */
+	public void increaseHits() {
+		this.hits++;
+	}
+	
+	/*
+	 * 게시글 삭제 
+	 */
+	public void delete() {
+		this.deleteYn = 'Y';
 	}
 }
