@@ -77,5 +77,15 @@ public class BoardService {
 		entity.increaseHits();
 		return new BoardResponseDto(entity);
 	}
+	
+	/*
+	 * 게시글 리스트 조회 - (삭제 여부 기준) 
+	 */
+	public List<BoardResponseDto> findAllByDeleteYn(final char deleteYn){
+		
+		Sort sort = Sort.by(Direction.DESC, "id", "createdDate");
+		List<Board> list = boardRepository.findAllByDeleteYn(deleteYn, sort);
+		return list.stream().map(BoardResponseDto::new).collect(Collectors.toList());
+	}
 
 }

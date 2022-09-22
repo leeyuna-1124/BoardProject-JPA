@@ -45,7 +45,7 @@
     </div>
     </th:block>
 
-	<!-- layout.html의 scrip를 JS코드로 렌더링 -->
+	<!-- layout.html의 script를 JS코드로 렌더링 --> 
     <th:block layout:fragment="script"> 
     <!-- 타임리프 문법을 사용하기 위해 선언 -->
     <script th:inline="javascript">
@@ -59,7 +59,7 @@
 	 //게시글 리스트 조회 
 	 function findAll(){
 		 
-		fetch('/api/boards').then(response => {
+		fetch('/api/boards?deleteYn=N').then(response => {
 			if(response.ok){
 				return response.json();
 			}
@@ -72,7 +72,7 @@
 				json.forEach((obj, idx) =>{
 					html += `<tr>
 							 <td>${idx+1}</td>
-							 <td class="text-left"><a href="javascript : void(0);">${obj.title}</a></td> 
+							 <td class="text-left"><a th:href="javascript : void(0);" onclick="goView(${obj.id})">${obj.title}</a></td> 
 							 <td>${obj.writer}</td>
 							 <td>${moment(obj.createdDate).format('YYYY-MM-DD HH:mm:ss')}</td>
 							 <td>${obj.hits}</td>
@@ -83,6 +83,11 @@
 			document.getElementById('list').innerHTML = html;
 		});
 		 
+	 }
+	 
+	 //게시글 조회 
+	 function goView(id){
+		 location.href = `/board/view/${id}`;
 	 }
 
 	/*]]>*/
