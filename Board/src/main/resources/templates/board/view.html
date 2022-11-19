@@ -82,12 +82,12 @@
     	
     	//뒤로가기
     	function goList(){
-    		location.href = '/list';
+    		location.href = '/list' + location.search;
     	}
     	
     	//수정하기 
     	function goWrite(){
-    		location.href = `/write?id=[[ ${id} ]]`;
+    		location.href = '/write' + location.search + `&id=[[ ${id} ]]`;
     	}
     	
     	//삭제하기
