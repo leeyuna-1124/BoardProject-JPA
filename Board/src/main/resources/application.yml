@@ -7,7 +7,7 @@ spring:
      jdbc-url: jdbc:log4jdbc:mysql://localhost:3306/board?serverTimezone=UTC&characterEncoding=UTF-8
      connection-test-query: SELECT NOW() FROM dual
      username: root
-     password: leeyuna1124
+     password: 1234
   
 #Resource and Tymeleaf Refresh
 #static폴더에 위치하는 css, image 등의 리소스 파일들과 HTML파일이 수정된 상태에서 새로고침(Refresh)이 일어났을 때

@@ -1,6 +1,6 @@
 package com.study.board.controller;
 
-import java.util.List;
+import java.util.Map;
 
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -9,11 +9,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.study.board.dto.BoardRequestDto;
 import com.study.board.dto.BoardResponseDto;
+import com.study.board.paging.CommonParams;
 import com.study.board.service.BoardService;
 import com.study.exception.CustomException;
 import com.study.exception.ErrorCode;
@@ -45,9 +45,8 @@ public class BoardController {
 	  * 게시글 리스트 조회 
 	  */
 	 @GetMapping("/boards")
-	 public List<BoardResponseDto> findAll(@RequestParam final char deleteYn){
-//		 return boardService.findAll();
-		 return boardService.findAllByDeleteYn(deleteYn);
+	 public Map<String, Object> findAll(final CommonParams params){
+		 return boardService.findAll(params);
 	 }
 	 
 	 /*

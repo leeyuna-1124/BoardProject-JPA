@@ -82,12 +82,12 @@
     	
     	//뒤로가기
     	function goList(){
-    	location.href = '/board/list';
+    		location.href = '/list';
     	}
     	
     	//수정하기 
     	function goWrite(){
-    		location.href = `/board/write?id=[[ ${id} ]]`;
+    		location.href = `/write?id=[[ ${id} ]]`;
     	}
     	
     	//삭제하기
@@ -95,7 +95,7 @@
     		
     		const id = "[[${id}]]";
     		
-    		if(!confirm(`${id}번 게시글을 삭제할까요?`)){
+    		if(!confirm(`게시글을 삭제할까요?`)){
     			return false;
     		}
     		

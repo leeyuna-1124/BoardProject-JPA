@@ -1,6 +1,9 @@
 package com.study.board.service;
 
+import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 import javax.transaction.Transactional;
@@ -12,6 +15,9 @@ import org.springframework.stereotype.Service;
 import com.study.board.dto.BoardRequestDto;
 import com.study.board.dto.BoardResponseDto;
 import com.study.board.entity.Board;
+import com.study.board.model.BoardMapper;
+import com.study.board.paging.CommonParams;
+import com.study.board.paging.Pagination;
 import com.study.board.repository.BoardRepository;
 import com.study.exception.CustomException;
 import com.study.exception.ErrorCode;
@@ -23,6 +29,7 @@ import lombok.RequiredArgsConstructor;
 public class BoardService {
 	
 	private final BoardRepository boardRepository;
+	private final BoardMapper boardMapper;
 	
 	/*
 	 * 게시글 생성 
@@ -86,6 +93,29 @@ public class BoardService {
 		Sort sort = Sort.by(Direction.DESC, "id", "createdDate");
 		List<Board> list = boardRepository.findAllByDeleteYn(deleteYn, sort);
 		return list.stream().map(BoardResponseDto::new).collect(Collectors.toList());
+	}
+	
+	/*
+	 * 게시글 리스트 조회 - 페이징
+	 */
+	public Map<String, Object> findAll(CommonParams params){
+		
+		int count = boardMapper.count(params);
+		
+		if(count < 1) {
+			return Collections.emptyMap();
+		}
+		
+		Pagination pagination = new Pagination(count, params);
+		params.setPagination(pagination);
+		
+		List<BoardResponseDto> list = boardMapper.findAll(params);
+		
+		Map<String, Object> response = new HashMap<>();
+		response.put("params", params);
+		response.put("list", list);
+		return response;
+		
 	}
 
 }
